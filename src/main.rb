@@ -8,7 +8,7 @@ require 'net/http'
 NUM_QUESTIONS = {
     'a' => 5,
     'b' => 10,
-    'c' => 15
+    'c' => 15,
 }
 
 CATEGORIES = {
@@ -20,6 +20,12 @@ CATEGORIES = {
     'f' => 27, # Animals
 }
 
+DIFFICULTIES = {
+    'a' => 'easy',
+    'b' => 'medium',
+    'c' => 'hard',
+}
+
 def clear_terminal
     # This method clears the user's terminal screen
 
@@ -28,6 +34,7 @@ end
 
 def get_nickname
     # This method gets nickname for the game from the user.
+    # Return nickname.
 
     while true
         puts "Please enter your nickname for the game (must be 30 characters or less):"
@@ -36,6 +43,8 @@ def get_nickname
         if nickname.strip.length <= 30
             break
         end
+
+        clear_terminal
     end
 
     clear_terminal
@@ -45,6 +54,7 @@ end
 
 def get_num_questions
     # This method gets the number of questions from the user.
+    # Return num_questions.
 
     while true
         puts "How many questions would you like to play?"
@@ -58,11 +68,66 @@ def get_num_questions
             num_questions = NUM_QUESTIONS[ans]
             break
         end
+
+        clear_terminal
     end
 
     clear_terminal
 
     return num_questions
+end
+
+def get_category
+    # This method gets the category of questions from the user.
+    # Return category.
+
+    while true
+        puts "Please select a category:"
+        puts "A\tGeneral Knowledge"
+        puts "B\tHistory"
+        puts "C\tScience: Mathematics"
+        puts "D\tScience: Computers"
+        puts "E\tSports"
+        puts "F\tAnimals"
+
+        ans = gets.chomp.downcase
+
+        if CATEGORIES[ans]
+            category = CATEGORIES[ans]
+            break
+        end
+
+        clear_terminal
+    end
+
+    clear_terminal
+
+    return category
+end
+
+def get_difficulty
+    # This method gets the level of difficulty from the user.
+    # Return difficulty
+
+    while true
+        puts "Please select the level of difficulty:"
+        puts "A\tEasy"
+        puts "B\tMedium"
+        puts "C\tHard"
+
+        ans = gets.chomp.downcase
+
+        if DIFFICULTIES[ans]
+            difficulty = DIFFICULTIES[ans]
+            break
+        end
+
+        clear_terminal
+    end
+
+    clear_terminal
+
+    return difficulty
 end
 
 def main
@@ -78,9 +143,13 @@ def main
 
     nickname = get_nickname
 
-    puts "Welcome #{nickname}!"
+    puts "Welcome to the game, #{nickname}!"
 
     num_questions = get_num_questions
+
+    category = get_category
+
+    difficulty = get_difficulty
 end
 
 main

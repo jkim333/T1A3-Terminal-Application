@@ -2,7 +2,7 @@
 
 This is a ruby terminal application that uses an external trivia quiz API (https://opentdb.com/api_config.php) to create fun trivia quiz games for anyone.
 
-The user will be able to choose the number of questions they would like to answer, category (e.g. general knowledge, sports), and the level of difficulty. The application will create a trivia quiz game tailored to the user's preferences.
+The user will be able to choose the number of questions they would like to answer, category (e.g. general knowledge, sports, and many more), and the level of difficulty. The application will create a trivia quiz game tailored to the user's preferences.
 
 The link to my source control repository is: https://github.com/jkim333/T1A3-Terminal-Application
 
@@ -14,13 +14,13 @@ The link to my source control repository is: https://github.com/jkim333/T1A3-Ter
 
 This application will create trivia quiz game for the users. The purpose of this application is to provide entertainment by engaging people to play the trivia quiz game.
 
-The user will be able to choose the number of questions they would like to answer, category (e.g. general knowledge, sports), and the level of difficulty. Depending on the choices they make, the application will create a game tailored to the user's preferences.
+The user will be able to choose the number of questions they would like to answer, category (e.g. general knowledge, sports, and many more), and the level of difficulty. Depending on the choices they make, the application will create a game tailored to the user's preferences.
 
 The application will provide entertainment, and serve as a tool for users to increase and test their knowledge. It could also be used by teachers as a tool to teach students knowledge from history, science and many other topics that are offered by the application. Students will be able to learn new knowledge while having fun playing the game.
 
 The target audience of this application could be a range of people including teachers, adults, kids, senior citizens and anyone that wants to have fun and test and improve their knowledge. The application comes with the flexibility for the user to choose the level of difficulty, the quiz category, and the number of questions. Therefore, this application will target a wide range of audience.
 
-In order to provide accessbility to users who don't understand Ruby programming, the application scripts will be converted to an executable file. Users can simply double click the executable file to launch the application. When the game is launched, the user will be prompted to choose the nickname. After this, the user will be prompted with the following questions: the number of questions they would like to answer, category (e.g. general knowledge, sports), and the level of difficulty. With these answers, the application will provide questions tailored to the user's preferences. After the user completes all questions, the application will present the score to show how well the user performed the quiz. Lastly, the user will be prompted with a question asking if they would like to see the correct answers to the questions.
+In order to provide accessbility to users who don't understand Ruby programming, the application scripts will be converted to an executable file. Users can simply double click the executable file to launch the application. When the game is launched, the user will be prompted to choose the nickname. After this, the user will be prompted with the following questions: the number of questions they would like to answer, category (e.g. general knowledge, sports), and the level of difficulty. With these answers, the application will provide questions tailored to the user's preferences. After the user completes all questions, the application will present the score to show how well the user performed the quiz. Lastly, the user will have an opportunity to review their answers and compare their answers to the correct answers.
 
 <br>
 
@@ -28,15 +28,13 @@ In order to provide accessbility to users who don't understand Ruby programming,
 
 1. **Choose nickname.** When the user runs the application, the user will first be prompted to enter their nickname for the game. The nickname will need to be 30 characters or less. Otherwise, the application will warn the user and will ask the user to enter their nickname again.
 
-2. **Choose questions.** After the user sets their nickname, the user will then be prompted with the following questions: the number of questions they would like to answer, category (e.g. general knowledge, sports), and the level of difficulty. With these answers, the application will send a tailored request to the external API. The application will receive a response from the API which will include the questions and answers. The questions and answers will then be stored within the variables before allowing the game to begin.
+2. **Choose questions.** After the user sets their nickname, the user will then be prompted with the following questions: the number of questions they would like to answer, category (e.g. general knowledge, sports, and many more), and the level of difficulty. With these answers, the application will send a tailored request to the external API. The application will receive a response from the API which will include the questions and answers. The questions and answers will then be stored within the variables before allowing the game to begin.
 
-3. **Timer.** For each question, the user will get 30 seconds to answer the question. If the user fails to answer the question within the time limit, it will be considered that the user answered the question wrong and the application will skip to the next question.
+3. **Show progress.** Each time a user answers a question, the application will notify the user on their progress. For example, after answering two questions out of ten questions, the application will print "Question 2 of 10: ...".
 
-4. **Show progress.** Each time a user answers a question, the application will notify the user on their progress. For example, after answering two questions out of ten questions, the application will print "2/10 questions answered".
+4. **Show score.** After the user completes all questions, the application will then present the score, showing how well the user performed at answering the questions. The application will also show a tailored reaction based on the score. If the user scores 75% or above, the application will print "You are a genius!". If the user scores from 50% to 75%, the application will print "Nice try. You did a good job.". If the user scores less than 50%, the application will print "Good effort. Try again.".
 
-5. **Show score.** After the user completes all questions, the application will then present the score, showing how well the user performed at answering the questions. The application will also show a tailored reaction based on the score. If the user scores 75% or above, the application will print "You are a genius!". If the user scores from 50% to 75%, the application will print "Nice try. You did a good job.". If the user scores less than 50%, the application will print "Good effort. Try again.".
-
-6. **Show answers.** After the application presents the score, the application will prompt the user if they want to see the correct answers to the questions.
+5. **Show results.** After the application presents the score, the application will present a range of options for the user to choose from. The application will ask the user if they want to review the answers, play again or terminate the game.
 
 <br>
 

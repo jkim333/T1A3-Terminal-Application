@@ -2,12 +2,16 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorize (0.8.1)
+    nokogiri (1.12.4-x86_64-linux)
+      racc (~> 1.4)
+    racc (1.5.2)
 
 PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
   colorize (~> 0.8.1)
+  nokogiri (~> 1.12)
 
 BUNDLED WITH
    2.2.28

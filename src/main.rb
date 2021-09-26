@@ -1,9 +1,7 @@
+require 'json'
 require 'uri'
 require 'net/http'
-
-# uri = URI('https://opentdb.com/api.php?amount=10')
-# res = Net::HTTP.get_response(uri)
-# puts res.body if res.is_a?(Net::HTTPSuccess)
+require 'nokogiri'
 
 NUM_QUESTIONS = {
     'a' => 5,
@@ -29,7 +27,7 @@ DIFFICULTIES = {
 def clear_terminal
     # This method clears the user's terminal screen
 
-    Gem.win_platform? ? system('cls') : system('clear')
+    Gem.win_platform? ? system("cls") : system("clear")
 end
 
 def get_nickname
@@ -130,13 +128,42 @@ def get_difficulty
     return difficulty
 end
 
-def main
-    # This method is invoked when the game is launched.
-    # The user will be asked to enter their nickname for the game.
-    # If the nickname is greater than 30 characters, the application will
-    # give a warning to the user. The user will be prompted again to enter a
-    # correct nickname that is 30 characters or less.
+def fetch_questions(num_questions, category, difficulty)
+    # This method makes a request to the external API to grab the questions.
+    # Return questions, all_answers, and correct_answers
 
+    url = "https://opentdb.com/api.php?amount=#{num_questions}&category=#{category}&difficulty=#{difficulty}"
+
+    puts "Please wait a few seconds to prepare the questions..."
+    uri = URI(url)
+    res = Net::HTTP.get_response(uri)
+    body =  JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
+
+    clear_terminal
+
+    data = body["results"]
+
+    questions = []
+    correct_answers = []
+    all_answers = []
+
+    data.each do |item|
+        questions << (Nokogiri::HTML.parse item["question"]).text
+        correct_answers << (Nokogiri::HTML.parse item["correct_answer"]).text
+        all_answers << [item["correct_answer"], *item["incorrect_answers"]]
+    end
+
+    all_answers = all_answers.map do |items|
+        transformed_item = items.map do |item|
+            (Nokogiri::HTML.parse item).text
+        end
+        transformed_item.shuffle
+    end
+
+    return questions, all_answers, correct_answers
+end
+
+def main
     clear_terminal
 
     puts "Welcome to Trivia Quiz game!"
@@ -150,6 +177,12 @@ def main
     category = get_category
 
     difficulty = get_difficulty
+
+    questions, answers, correct_answers = fetch_questions(num_questions, category, difficulty)
+
+    for i in 0...questions.length
+        
+    end
 end
 
 main

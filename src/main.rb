@@ -246,6 +246,8 @@ def show_results(nickname, score, questions, correct_answers, user_entered_answe
 end
 
 def review_answers(nickname, questions, correct_answers, user_entered_answers)
+    # This method loops through every question and compare the correct answer to the user's answer.
+
     clear_terminal
 
     (0...questions.length).each do |i|

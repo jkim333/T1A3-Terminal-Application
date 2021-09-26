@@ -200,12 +200,98 @@ def ask_question(question, all_answers, correct_answer, question_no, no_question
     return is_answer_correct, user_entered_answer
 end
 
-def main
+def show_results(nickname, score, questions, correct_answers, user_entered_answers)
+    # This method present the score, showing how well the user performed at answering the questions.
+    # It will show a tailored reaction based on the score.
+    # This method does not return anything.
+
+    score_pct = score.to_f / questions.length * 100
+
+    if score_pct >= 75
+        puts "Well done #{nickname}! You are a genius!"
+    elsif score_pct >= 50
+        puts "Nice try #{nickname}. You did a good job."
+    else
+        puts "Good effort #{nickname}! Try again next time."
+    end
+
+    puts "Your've answered #{score} questions correct out of #{questions.length} questions."
+    puts ""
+    
+    while true
+        puts "What would you like to do next?"
+        puts "A\tReview my answers."
+        puts "B\tPlay again."
+        puts "C\tQuit this game."
+
+        ans = gets.chomp.downcase
+
+        if ['a', 'b', 'c'].include? ans
+            break
+        end
+
+        clear_terminal
+    end
+
+    clear_terminal
+
+    case ans
+    when 'a'
+        review_answers(nickname, questions, correct_answers, user_entered_answers)
+    when 'b'
+        main(nickname)
+    when 'c'
+        puts "Thanks for playing this game #{nickname}! See you again :)"
+    end
+end
+
+def review_answers(nickname, questions, correct_answers, user_entered_answers)
+    clear_terminal
+
+    (0...questions.length).each do |i|
+        puts "Question #{i+1} of #{questions.length}: #{questions[i]}"
+        puts "Your answer was: #{user_entered_answers[i]}"
+        puts "The correct answer was: #{correct_answers[i]}"
+        puts ""
+        puts "Press Enter key to move to the next question."
+        gets
+        clear_terminal
+    end
+
+    while true
+        puts "What would you like to do next?"
+        puts "A\tPlay again."
+        puts "B\tQuit this game."
+
+        ans = gets.chomp.downcase
+
+        if ['a', 'b'].include? ans
+            break
+        end
+
+        clear_terminal
+    end
+
+    clear_terminal
+
+    case ans
+    when 'a'
+        main(nickname)
+    when 'b'
+        puts "Thanks for playing this game #{nickname}! See you again :)"
+    end
+end
+
+def main(nickname)
     clear_terminal
 
     puts "Welcome to Trivia Quiz game!"
 
-    nickname = get_nickname
+    if !nickname
+        nickname = get_nickname
+    end
+
+    clear_terminal
 
     puts "Welcome to the game, #{nickname}!"
 
@@ -230,9 +316,7 @@ def main
         user_entered_answers << user_entered_answer
     end
 
-    p score
-    p correct_answers
-    p user_entered_answers
+    show_results(nickname, score, questions, correct_answers, user_entered_answers)
 end
 
-main
+main(nil)

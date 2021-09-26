@@ -163,6 +163,43 @@ def fetch_questions(num_questions, category, difficulty)
     return questions, all_answers, correct_answers
 end
 
+def ask_question(question, all_answers, correct_answer, question_no, no_questions)
+    # This method asks the user a question and accepts user's answer as input.
+    # Return is_answer_correct and user_entered_answer
+    
+    # Available options for users to choose from. e.g. a, b, c, d.
+    options = (0...all_answers.length).map do |i|
+        (i + 97).chr # 97.chr returns "a", 98.chr returns "b", and so on
+    end
+
+    answer_index = all_answers.find_index(correct_answer)
+
+    is_answer_correct = false
+
+    while true
+        puts "Question #{question_no} of #{no_questions}: #{question}"
+
+        (0...all_answers.length).each do |i|
+            puts "#{options[i].upcase}\t#{all_answers[i]}"
+        end
+    
+        ans = gets.chomp.downcase
+
+        if options.find_index(ans)
+            is_answer_correct = options.find_index(ans) == answer_index
+            break
+        end
+
+        clear_terminal
+    end
+
+    user_entered_answer = all_answers[options.find_index(ans)]
+
+    clear_terminal
+
+    return is_answer_correct, user_entered_answer
+end
+
 def main
     clear_terminal
 
@@ -178,11 +215,24 @@ def main
 
     difficulty = get_difficulty
 
-    questions, answers, correct_answers = fetch_questions(num_questions, category, difficulty)
+    questions, all_answers, correct_answers = fetch_questions(num_questions, category, difficulty)
+
+    score = 0
+    user_entered_answers = []
 
     for i in 0...questions.length
-        
+        is_answer_correct, user_entered_answer = ask_question(questions[i], all_answers[i], correct_answers[i], i+1, questions.length)
+
+        if is_answer_correct
+            score += 1
+        end
+
+        user_entered_answers << user_entered_answer
     end
+
+    p score
+    p correct_answers
+    p user_entered_answers
 end
 
 main

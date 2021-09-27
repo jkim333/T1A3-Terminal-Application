@@ -208,20 +208,15 @@ class Quiz
 
         puts "Your've answered #{score} questions correct out of #{questions.length} questions.".colorize(:light_green)
         puts ""
-        
+
         while true
-            puts "What would you like to do next?"
-            puts "A\tReview my answers."
-            puts "B\tPlay again."
-            puts "C\tQuit this game."
-
-            ans = $stdin.gets.chomp.downcase
-
-            if ['a', 'b', 'c'].include? ans
+            begin
+                ans = choose_next_move(["A\tReview my answers.", "B\tPlay again.", "C\tQuit this game."], ['a', 'b', 'c'])
                 break
+            rescue StandardError => e
+                clear_terminal
+                puts e.to_s.colorize(:red)
             end
-
-            clear_terminal
         end
 
         clear_terminal
@@ -253,7 +248,7 @@ class Quiz
 
         while true
             begin
-                ans = choose_next_move
+                ans = choose_next_move(["A\tPlay again.", "B\tQuit this game."], ['a', 'b'])
                 break
             rescue StandardError => e
                 clear_terminal
@@ -271,17 +266,18 @@ class Quiz
         end
     end
 
-    def choose_next_move
-        # This method is invoked by review_answers method
+    def choose_next_move(options_to_print, options_allowed)
+        # This method is invoked by review_answers and show_results method
         # Returns ans
 
         puts "What would you like to do next?"
-        puts "A\tPlay again."
-        puts "B\tQuit this game."
+        options_to_print.each do |option|
+            puts option
+        end
 
         ans = $stdin.gets.chomp.downcase
 
-        if ['a', 'b'].include? ans
+        if options_allowed.include? ans
             return ans
         else
             raise "You have entered an invalid key. Please try again."

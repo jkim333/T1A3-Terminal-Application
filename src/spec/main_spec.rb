@@ -20,16 +20,35 @@ describe "get_nickname" do
     end
 end
 
-# describe "get_num_questions" do
-#     it "should return 5 when user input is 'a'" do
-#     end
+describe "get_num_questions" do
+    it "should return 5 when user input is 'a'" do
+        quiz = Quiz.new
 
-#     it "should return 10 when user input is 'b'" do
-#     end
+        allow($stdin).to receive(:gets).and_return("a")
+
+        num_questions = quiz.get_num_questions
+
+        expect(num_questions).to eq 5
+    end
+
+    it "should return 10 when user input is 'b'" do
+        quiz = Quiz.new
+
+        allow($stdin).to receive(:gets).and_return("b")
+
+        num_questions = quiz.get_num_questions
+
+        expect(num_questions).to eq 10
+    end
     
-#     it "should raise error when user input is 'd'" do
-#     end
-# end
+    it "should raise error when user input is 'd'" do
+        quiz = Quiz.new
+
+        allow($stdin).to receive(:gets).and_return("d")
+
+        expect{quiz.get_num_questions}.to raise_error(RuntimeError, "You have entered an invalid key. Please try again.")
+    end
+end
 
 # describe "get_category" do
 #     it "should return 9 when user input is 'a'" do

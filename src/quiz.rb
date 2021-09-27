@@ -25,10 +25,6 @@ class Quiz
         'c' => 'hard',
     }
 
-    def initialize
-        main(nil)
-    end
-
     def clear_terminal
         # This method clears the user's terminal screen
 
@@ -39,15 +35,11 @@ class Quiz
         # This method gets nickname for the game from the user.
         # Return nickname.
 
-        while true
-            puts "Please enter your nickname for the game (must be 30 characters or less):"
-            nickname = gets.chomp
+        puts "Please enter your nickname for the game (must be 30 characters or less):"
+        nickname = gets.chomp
 
-            if nickname.strip.length <= 30
-                break
-            end
-
-            clear_terminal
+        if !(nickname.strip.length <= 30)
+            raise "Your nickname must be 30 characters or less!"
         end
 
         clear_terminal
@@ -255,7 +247,7 @@ class Quiz
         when 'a'
             review_answers(nickname, questions, correct_answers, user_entered_answers)
         when 'b'
-            main(nickname)
+            run(nickname)
         when 'c'
             puts "Thanks for playing this game #{nickname}! See you again :)"
         end
@@ -294,19 +286,29 @@ class Quiz
 
         case ans
         when 'a'
-            main(nickname)
+            run(nickname)
         when 'b'
             puts "Thanks for playing this game #{nickname}! See you again :)"
         end
     end
 
-    def main(nickname)
+    def run(nickname)
+        # This method is invoked to run the quiz.
+
         clear_terminal
 
         puts "Welcome to Trivia Quiz game!".colorize(:light_blue)
 
         if !nickname
-            nickname = get_nickname
+            while true
+                begin
+                    nickname = get_nickname
+                    break
+                rescue StandardError => e
+                    clear_terminal
+                    puts e.to_s.colorize(:red)
+                end
+            end
         end
 
         clear_terminal

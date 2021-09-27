@@ -124,18 +124,11 @@ class Quiz
 
         puts "Please wait a few seconds to prepare the questions...".colorize(:yellow)
 
-        begin
-            uri = URI(url)
-            res = Net::HTTP.get_response(uri)
-            body =  JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
-            if body["results"].length == 0
-                raise "We were unable to fetch the questions."
-            end
-        rescue StandardError => e
-            puts "Something happened while fetching the questions.".colorize(:red)
-            puts e.to_s.colorize(:red)
-            puts "Please try again next time.".colorize(:red)
-            exit
+        uri = URI(url)
+        res = Net::HTTP.get_response(uri)
+        body =  JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
+        if body["results"].length == 0
+            raise "We were unable to fetch the questions."
         end
 
         clear_terminal
@@ -336,7 +329,14 @@ class Quiz
             end
         end
 
-        questions, all_answers, correct_answers = fetch_questions(num_questions, category, difficulty)
+        begin
+            questions, all_answers, correct_answers = fetch_questions(num_questions, category, difficulty)
+        rescue StandardError => e
+            puts "Something happened while fetching the questions.".colorize(:red)
+            puts e.to_s.colorize(:red)
+            puts "Please try again next time.".colorize(:red)
+            exit
+        end
 
         score = 0
         user_entered_answers = []

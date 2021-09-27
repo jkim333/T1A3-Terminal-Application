@@ -1,5 +1,5 @@
 require_relative 'quiz'
 
-quiz = Quiz.new
+quiz = Quiz::Quiz.new
 
 quiz.run(nil)

@@ -3,7 +3,7 @@ require_relative '../quiz'
 
 describe "get_nickname" do
     it "should return nickname length 30 characters or less" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("nickname")
 
@@ -12,7 +12,7 @@ describe "get_nickname" do
     end
 
     it "should raise error when nickname length more than 30 characters" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("a" * 50)
 
@@ -22,7 +22,7 @@ end
 
 describe "get_num_questions" do
     it "should return 5 when user input is 'a'" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("a")
 
@@ -32,7 +32,7 @@ describe "get_num_questions" do
     end
 
     it "should return 10 when user input is 'b'" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("b")
 
@@ -42,7 +42,7 @@ describe "get_num_questions" do
     end
     
     it "should raise error when user input is 'd'" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("d")
 
@@ -52,7 +52,7 @@ end
 
 describe "get_category" do
     it "should return 9 when user input is 'a'" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("a")
 
@@ -62,7 +62,7 @@ describe "get_category" do
     end
 
     it "should return 23 when user input is 'b'" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("b")
 
@@ -72,7 +72,7 @@ describe "get_category" do
     end
 
     it "should raise error when user input is 'g'" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("g")
 
@@ -82,7 +82,7 @@ end
 
 describe "get_difficulty" do
     it "should return 'easy' when user input is 'a'" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("a")
 
@@ -92,7 +92,7 @@ describe "get_difficulty" do
     end
     
     it "should return 'hard' when user input is 'c'" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("c")
 
@@ -102,7 +102,7 @@ describe "get_difficulty" do
     end
 
     it "should raise error when user input is 'd'" do
-        quiz = Quiz.new
+        quiz = Quiz::Quiz.new
 
         allow($stdin).to receive(:gets).and_return("g")
 

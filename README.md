@@ -38,20 +38,21 @@ When the game is launched, the user will be prompted to choose the nickname. Aft
 
 <br>
 
-## User interaction and experience (to do)
+## User interaction and experience
 
-Develop an outline of the user interaction and experience for the application.
-Your outline must include:
+The application will ask the user the following questions: their nickname, the number of questions they would like to play, the quiz category, and the level of difficulty. Error handling is performed for all of these questions. For example, if the user enters in a nickname that is more than 30 characters in length, the application will give a warning to the user and ask the user to enter a nickname that is of correct length. The application will not proceed to the next stage unless a correct input is obtained from the user. Based on the information that the user provides, the application will then make a request to the external trivia quiz API (https://opentdb.com/api_config.php) to prepare the questions tailored for the user.
 
-- how the user will find out how to interact with / use each feature
-- how the user will interact with / use each feature
-- how errors will be handled by the application and displayed to the user
+After the questions are downloaded from the external API, the application will then present each question to the user and ask the user to enter in the answer. Again, error handling is applied here to make sure that the user's input is valid. A thorough error handling process is applied whenever the application accepts any sort of input from the user. The application keeps a record of all the inputs that the user provides to later calculate the overall score for the game.
+
+After presenting all of the questions to the user, the application notifies the user of their score with a tailored reaction based on their score. They will be provided with three options to choose from: 1. review all answers, 2. play again, and 3. quit the game. If the user chooses the review all answers, the application will take the user through all of the questions one by one and present the user's answer against the correct answer. If the user chooses to play again, the application will repeat the application. Lastly, the option to quit the game will terminate the application.
+
+By launching the ruby application with -h command line argument, the application provides a brief introduction to the game. Users can find out how to interact with each feature of the game.
 
 <br>
 
 ## Control flow diagram
 
-The diagram below describes the control flow of my application.
+The diagram below describes the control flow of this application.
 
 ![Control flow diagram](./docs/control_flow_diagram.png)
 

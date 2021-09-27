@@ -50,24 +50,62 @@ describe "get_num_questions" do
     end
 end
 
-# describe "get_category" do
-#     it "should return 9 when user input is 'a'" do
-#     end
+describe "get_category" do
+    it "should return 9 when user input is 'a'" do
+        quiz = Quiz.new
 
-#     it "should return 23 when user input is 'b'" do
-#     end
+        allow($stdin).to receive(:gets).and_return("a")
 
-#     it "should raise error when user input is 'g'" do
-#     end
-# end
+        category = quiz.get_category
 
-# describe "get_difficulty" do
-#     it "should return 'easy' when user input is 'a'" do
-#     end
+        expect(category).to eq 9
+    end
+
+    it "should return 23 when user input is 'b'" do
+        quiz = Quiz.new
+
+        allow($stdin).to receive(:gets).and_return("b")
+
+        category = quiz.get_category
+
+        expect(category).to eq 23
+    end
+
+    it "should raise error when user input is 'g'" do
+        quiz = Quiz.new
+
+        allow($stdin).to receive(:gets).and_return("g")
+
+        expect{quiz.get_category}.to raise_error(RuntimeError, "You have entered an invalid key. Please try again.")
+    end
+end
+
+describe "get_difficulty" do
+    it "should return 'easy' when user input is 'a'" do
+        quiz = Quiz.new
+
+        allow($stdin).to receive(:gets).and_return("a")
+
+        difficulty = quiz.get_difficulty
+
+        expect(difficulty).to eq "easy"
+    end
     
-#     it "should return 'hard' when user input is 'c'" do
-#     end
+    it "should return 'hard' when user input is 'c'" do
+        quiz = Quiz.new
 
-#     it "should raise error when user input is 'd'" do
-#     end
-# end
+        allow($stdin).to receive(:gets).and_return("c")
+
+        difficulty = quiz.get_difficulty
+
+        expect(difficulty).to eq "hard"
+    end
+
+    it "should raise error when user input is 'd'" do
+        quiz = Quiz.new
+
+        allow($stdin).to receive(:gets).and_return("g")
+
+        expect{quiz.get_difficulty}.to raise_error(RuntimeError, "You have entered an invalid key. Please try again.")
+    end
+end

@@ -168,21 +168,18 @@ class Quiz
 
         is_answer_correct = false
 
-        while true
-            puts "Question #{question_no} of #{no_questions}: #{question}".colorize(:light_blue)
+        puts "Question #{question_no} of #{no_questions}: #{question}".colorize(:light_blue)
 
-            (0...all_answers.length).each do |i|
-                puts "#{options[i].upcase}\t#{all_answers[i]}"
-            end
-        
-            ans = gets.chomp.downcase
+        (0...all_answers.length).each do |i|
+            puts "#{options[i].upcase}\t#{all_answers[i]}"
+        end
+    
+        ans = gets.chomp.downcase
 
-            if options.find_index(ans)
-                is_answer_correct = options.find_index(ans) == answer_index
-                break
-            end
-
-            clear_terminal
+        if options.find_index(ans)
+            is_answer_correct = options.find_index(ans) == answer_index
+        else
+            raise "You have entered an invalid key. Please try again."
         end
 
         user_entered_answer = all_answers[options.find_index(ans)]
@@ -342,7 +339,15 @@ class Quiz
         user_entered_answers = []
 
         for i in 0...questions.length
-            is_answer_correct, user_entered_answer = ask_question(questions[i], all_answers[i], correct_answers[i], i+1, questions.length)
+            while true
+                begin
+                    is_answer_correct, user_entered_answer = ask_question(questions[i], all_answers[i], correct_answers[i], i+1, questions.length)
+                    break
+                rescue StandardError => e
+                    clear_terminal
+                    puts e.to_s.colorize(:red)
+                end
+            end
 
             if is_answer_correct
                 score += 1

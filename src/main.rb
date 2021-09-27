@@ -2,6 +2,7 @@ require 'json'
 require 'uri'
 require 'net/http'
 require 'nokogiri'
+require 'colorize'
 
 NUM_QUESTIONS = {
     'a' => 5,
@@ -134,7 +135,7 @@ def fetch_questions(num_questions, category, difficulty)
 
     url = "https://opentdb.com/api.php?amount=#{num_questions}&category=#{category}&difficulty=#{difficulty}"
 
-    puts "Please wait a few seconds to prepare the questions..."
+    puts "Please wait a few seconds to prepare the questions...".colorize(:yellow)
     uri = URI(url)
     res = Net::HTTP.get_response(uri)
     body =  JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
@@ -177,7 +178,7 @@ def ask_question(question, all_answers, correct_answer, question_no, no_question
     is_answer_correct = false
 
     while true
-        puts "Question #{question_no} of #{no_questions}: #{question}"
+        puts "Question #{question_no} of #{no_questions}: #{question}".colorize(:light_blue)
 
         (0...all_answers.length).each do |i|
             puts "#{options[i].upcase}\t#{all_answers[i]}"
@@ -208,14 +209,14 @@ def show_results(nickname, score, questions, correct_answers, user_entered_answe
     score_pct = score.to_f / questions.length * 100
 
     if score_pct >= 75
-        puts "Well done #{nickname}! You are a genius!"
+        puts "Well done #{nickname}! You are a genius!".colorize(:light_blue)
     elsif score_pct >= 50
-        puts "Nice try #{nickname}. You did a good job."
+        puts "Nice try #{nickname}. You did a good job.".colorize(:light_blue)
     else
-        puts "Good effort #{nickname}! Try again next time."
+        puts "Good effort #{nickname}! Try again next time.".colorize(:light_blue)
     end
 
-    puts "Your've answered #{score} questions correct out of #{questions.length} questions."
+    puts "Your've answered #{score} questions correct out of #{questions.length} questions.".colorize(:light_green)
     puts ""
     
     while true
@@ -251,11 +252,11 @@ def review_answers(nickname, questions, correct_answers, user_entered_answers)
     clear_terminal
 
     (0...questions.length).each do |i|
-        puts "Question #{i+1} of #{questions.length}: #{questions[i]}"
-        puts "Your answer was: #{user_entered_answers[i]}"
-        puts "The correct answer was: #{correct_answers[i]}"
+        puts "Question #{i+1} of #{questions.length}: #{questions[i]}".colorize(:light_blue)
+        puts "Your answer was: #{user_entered_answers[i]}".colorize(:light_green)
+        puts "The correct answer was: #{correct_answers[i]}".colorize(:light_green)
         puts ""
-        puts "Press Enter key to move to the next question."
+        puts "Press Enter key to move to the next question.".colorize(:yellow)
         gets
         clear_terminal
     end
@@ -287,7 +288,7 @@ end
 def main(nickname)
     clear_terminal
 
-    puts "Welcome to Trivia Quiz game!"
+    puts "Welcome to Trivia Quiz game!".colorize(:light_blue)
 
     if !nickname
         nickname = get_nickname
@@ -295,7 +296,7 @@ def main(nickname)
 
     clear_terminal
 
-    puts "Welcome to the game, #{nickname}!"
+    puts "Welcome to the game, #{nickname}!".colorize(:light_blue)
 
     num_questions = get_num_questions
 

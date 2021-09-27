@@ -18,6 +18,14 @@ describe "get_nickname" do
 
         expect{quiz.get_nickname}.to raise_error(RuntimeError, "Your nickname must be 30 characters or less!")
     end
+
+    it "should raise error when nickname length equals 0" do
+        quiz = Quiz::Quiz.new
+
+        allow($stdin).to receive(:gets).and_return("")
+
+        expect{quiz.get_nickname}.to raise_error(RuntimeError, "Your nickname must be 30 characters or less!")
+    end
 end
 
 describe "get_num_questions" do

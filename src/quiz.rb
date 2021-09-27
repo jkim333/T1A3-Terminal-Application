@@ -40,7 +40,7 @@ module Quiz
             puts "Please enter your nickname for the game (must be 30 characters or less):"
             nickname = $stdin.gets.chomp
 
-            if !(nickname.strip.length <= 30)
+            if !(nickname.strip.length <= 30) || nickname.length == 0
                 raise "Your nickname must be 30 characters or less!"
             end
 

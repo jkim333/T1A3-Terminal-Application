@@ -6,24 +6,26 @@ require 'colorize'
 
 
 class Quiz
-    @@NUM_QUESTIONS = {
-        'a' => 5,
-        'b' => 10,
-        'c' => 15,
-    }
-    @@CATEGORIES = {
-        'a' => 9, # General Knowledge
-        'b' => 23, # History
-        'c' => 19, # Science: Mathematics
-        'd' => 18, # Science: Computers
-        'e' => 21, # Sports
-        'f' => 27, # Animals
-    }
-    @@DIFFICULTIES = {
-        'a' => 'easy',
-        'b' => 'medium',
-        'c' => 'hard',
-    }
+    def initialize
+        @NUM_QUESTIONS = {
+            'a' => 5,
+            'b' => 10,
+            'c' => 15,
+        }
+        @CATEGORIES = {
+            'a' => 9, # General Knowledge
+            'b' => 23, # History
+            'c' => 19, # Science: Mathematics
+            'd' => 18, # Science: Computers
+            'e' => 21, # Sports
+            'f' => 27, # Animals
+        }
+        @DIFFICULTIES = {
+            'a' => 'easy',
+            'b' => 'medium',
+            'c' => 'hard',
+        }
+    end
 
     def clear_terminal
         # This method clears the user's terminal screen
@@ -36,7 +38,7 @@ class Quiz
         # Return nickname.
 
         puts "Please enter your nickname for the game (must be 30 characters or less):"
-        nickname = gets.chomp
+        nickname = $stdin.gets.chomp
 
         if !(nickname.strip.length <= 30)
             raise "Your nickname must be 30 characters or less!"
@@ -56,10 +58,10 @@ class Quiz
         puts "B\t10"
         puts "C\t15"
 
-        ans = gets.chomp.downcase
+        ans = $stdin.gets.chomp.downcase
 
-        if @@NUM_QUESTIONS[ans]
-            num_questions = @@NUM_QUESTIONS[ans]
+        if @NUM_QUESTIONS[ans]
+            num_questions = @NUM_QUESTIONS[ans]
         else
             raise "You have entered an invalid key. Please try again."
         end
@@ -81,10 +83,10 @@ class Quiz
         puts "E\tSports"
         puts "F\tAnimals"
 
-        ans = gets.chomp.downcase
+        ans = $stdin.gets.chomp.downcase
 
-        if @@CATEGORIES[ans]
-            category = @@CATEGORIES[ans]
+        if @CATEGORIES[ans]
+            category = @CATEGORIES[ans]
         else
             raise "You have entered an invalid key. Please try again."
         end
@@ -103,10 +105,10 @@ class Quiz
         puts "B\tMedium"
         puts "C\tHard"
 
-        ans = gets.chomp.downcase
+        ans = $stdin.gets.chomp.downcase
 
-        if @@DIFFICULTIES[ans]
-            difficulty = @@DIFFICULTIES[ans]
+        if @DIFFICULTIES[ans]
+            difficulty = @DIFFICULTIES[ans]
         else
             raise "You have entered an invalid key. Please try again."
         end
@@ -174,7 +176,7 @@ class Quiz
             puts "#{options[i].upcase}\t#{all_answers[i]}"
         end
     
-        ans = gets.chomp.downcase
+        ans = $stdin.gets.chomp.downcase
 
         if options.find_index(ans)
             is_answer_correct = options.find_index(ans) == answer_index
@@ -213,7 +215,7 @@ class Quiz
             puts "B\tPlay again."
             puts "C\tQuit this game."
 
-            ans = gets.chomp.downcase
+            ans = $stdin.gets.chomp.downcase
 
             if ['a', 'b', 'c'].include? ans
                 break
@@ -245,7 +247,7 @@ class Quiz
             puts "The correct answer was: #{correct_answers[i]}".colorize(:light_green)
             puts ""
             puts "Press Enter key to move to the next question.".colorize(:yellow)
-            gets
+            $stdin.gets
             clear_terminal
         end
 
@@ -277,7 +279,7 @@ class Quiz
         puts "A\tPlay again."
         puts "B\tQuit this game."
 
-        ans = gets.chomp.downcase
+        ans = $stdin.gets.chomp.downcase
 
         if ['a', 'b'].include? ans
             return ans

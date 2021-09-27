@@ -20,7 +20,7 @@ The application will provide entertainment, and serve as a tool for users to inc
 
 The target audience of this application could be a range of people including teachers, adults, kids, senior citizens and anyone that wants to have fun and test and improve their knowledge. The application comes with the flexibility for the user to choose the level of difficulty, the quiz category, and the number of questions. Therefore, this application will target a wide range of audience.
 
-In order to provide accessbility to users who don't understand Ruby programming, the application scripts will be converted to an executable file. Users can simply double click the executable file to launch the application. When the game is launched, the user will be prompted to choose the nickname. After this, the user will be prompted with the following questions: the number of questions they would like to answer, category (e.g. general knowledge, sports), and the level of difficulty. With these answers, the application will provide questions tailored to the user's preferences. After the user completes all questions, the application will present the score to show how well the user performed the quiz. Lastly, the user will have an opportunity to review their answers and compare their answers to the correct answers.
+When the game is launched, the user will be prompted to choose the nickname. After this, the user will be prompted with the following questions: the number of questions they would like to answer, category (e.g. general knowledge, sports), and the level of difficulty. With these answers, the application will provide questions tailored to the user's preferences. After the user completes all questions, the application will present the score to show how well the user performed the quiz. Lastly, the user will have an opportunity to review their answers and compare their answers to the correct answers.
 
 <br>
 
@@ -38,7 +38,7 @@ In order to provide accessbility to users who don't understand Ruby programming,
 
 <br>
 
-## User interaction and experience
+## User interaction and experience (to do)
 
 Develop an outline of the user interaction and experience for the application.
 Your outline must include:
@@ -51,14 +51,13 @@ Your outline must include:
 
 ## Control flow diagram
 
-Develop a diagram which describes the control flow of your application. Your diagram must:
+The diagram below describes the control flow of my application.
 
-- show the workflow/logic and/or integration of the features in your application for each feature.
-- utilise a recognised format or set of conventions for a control flow diagram, such as UML.
+![Control flow diagram](./docs/control_flow_diagram.png)
 
 <br>
 
-## Implementation plan
+## Implementation plan (to do)
 
 Develop an implementation plan which:
 
@@ -72,7 +71,7 @@ Utilise a suitable project management platform to track this implementation plan
 
 <br>
 
-## Help documentation
+## Help documentation (todo)
 
 Design help documentation which includes a set of instructions which accurately describe how to use and install the application.
 
@@ -84,14 +83,21 @@ You must include:
 
 <br>
 
-# Testing
+# Unit Test
 
-Design TWO tests which check that the application is running as expected.
+Using a Ruby gem called [RSpec](https://rspec.info/), a total of 12 unit tests were developed and used to check that the application is running as expected. Please have a look at the source code of the application to view these tests. The table below provides a detailed summary of these tests.
 
-Each test should:
-
-- cover a different feature of the application
-- state what is being tested
-- provide at least TWO test cases and the expected results for each test case
-
-> An outline of the testing procedure and cases should be included with the source code of the application
+| Number | Feature                              | Test                                                            | Expectation  | Actual       | Result |
+| ------ | ------------------------------------ | --------------------------------------------------------------- | ------------ | ------------ | ------ |
+| 1      | Choose nickname                      | should return nickname length 30 characters or less             | "nickname"   | "nickname"   | pass   |
+| 2      | Choose nickname                      | should raise error when nickname length more than 30 characters | RuntimeError | RuntimeError | pass   |
+| 3      | Choose nickname                      | should raise error when nickname length equals 0                | RuntimeError | RuntimeError | pass   |
+| 4      | Choose questions (get_num_questions) | should return 5 when user input is 'a'                          | 5            | 5            | pass   |
+| 5      | Choose questions (get_num_questions) | should return 10 when user input is 'b'                         | 10           | 10           | pass   |
+| 6      | Choose questions (get_num_questions) | should raise error when user input is 'd'                       | RuntimeError | RuntimeError | pass   |
+| 7      | Choose questions (get_category)      | should return 9 when user input is 'a'                          | 9            | 9            | pass   |
+| 8      | Choose questions (get_category)      | should return 23 when user input is 'b'                         | 23           | 23           | pass   |
+| 9      | Choose questions (get_category)      | should raise error when user input is 'g'                       | RuntimeError | RuntimeError | pass   |
+| 10     | Choose questions (get_difficulty)    | should return 'easy' when user input is 'a'                     | "easy"       | "easy"       | pass   |
+| 11     | Choose questions (get_difficulty)    | should return 'hard' when user input is 'c'                     | "hard"       | "hard"       | pass   |
+| 12     | Choose questions (get_difficulty)    | should raise error when user input is 'd'                       | RuntimeError | RuntimeError | pass   |

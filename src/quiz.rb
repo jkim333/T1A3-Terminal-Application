@@ -250,17 +250,13 @@ class Quiz
         end
 
         while true
-            puts "What would you like to do next?"
-            puts "A\tPlay again."
-            puts "B\tQuit this game."
-
-            ans = gets.chomp.downcase
-
-            if ['a', 'b'].include? ans
+            begin
+                ans = choose_next_move
                 break
+            rescue StandardError => e
+                clear_terminal
+                puts e.to_s.colorize(:red)
             end
-
-            clear_terminal
         end
 
         clear_terminal
@@ -270,6 +266,23 @@ class Quiz
             run(nickname)
         when 'b'
             puts "Thanks for playing this game #{nickname}! See you again :)"
+        end
+    end
+
+    def choose_next_move
+        # This method is invoked by review_answers method
+        # Returns ans
+
+        puts "What would you like to do next?"
+        puts "A\tPlay again."
+        puts "B\tQuit this game."
+
+        ans = gets.chomp.downcase
+
+        if ['a', 'b'].include? ans
+            return ans
+        else
+            raise "You have entered an invalid key. Please try again."
         end
     end
 

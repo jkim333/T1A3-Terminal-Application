@@ -51,20 +51,17 @@ class Quiz
         # This method gets the number of questions from the user.
         # Return num_questions.
 
-        while true
-            puts "How many questions would you like to play?"
-            puts "A\t5"
-            puts "B\t10"
-            puts "C\t15"
+        puts "How many questions would you like to play?"
+        puts "A\t5"
+        puts "B\t10"
+        puts "C\t15"
 
-            ans = gets.chomp.downcase
+        ans = gets.chomp.downcase
 
-            if @@NUM_QUESTIONS[ans]
-                num_questions = @@NUM_QUESTIONS[ans]
-                break
-            end
-
-            clear_terminal
+        if @@NUM_QUESTIONS[ans]
+            num_questions = @@NUM_QUESTIONS[ans]
+        else
+            raise "You have entered an invalid key. Please try again."
         end
 
         clear_terminal
@@ -76,23 +73,20 @@ class Quiz
         # This method gets the category of questions from the user.
         # Return category.
 
-        while true
-            puts "Please select a category:"
-            puts "A\tGeneral Knowledge"
-            puts "B\tHistory"
-            puts "C\tScience: Mathematics"
-            puts "D\tScience: Computers"
-            puts "E\tSports"
-            puts "F\tAnimals"
+        puts "Please select a category:"
+        puts "A\tGeneral Knowledge"
+        puts "B\tHistory"
+        puts "C\tScience: Mathematics"
+        puts "D\tScience: Computers"
+        puts "E\tSports"
+        puts "F\tAnimals"
 
-            ans = gets.chomp.downcase
+        ans = gets.chomp.downcase
 
-            if @@CATEGORIES[ans]
-                category = @@CATEGORIES[ans]
-                break
-            end
-
-            clear_terminal
+        if @@CATEGORIES[ans]
+            category = @@CATEGORIES[ans]
+        else
+            raise "You have entered an invalid key. Please try again."
         end
 
         clear_terminal
@@ -104,20 +98,17 @@ class Quiz
         # This method gets the level of difficulty from the user.
         # Return difficulty
 
-        while true
-            puts "Please select the level of difficulty:"
-            puts "A\tEasy"
-            puts "B\tMedium"
-            puts "C\tHard"
+        puts "Please select the level of difficulty:"
+        puts "A\tEasy"
+        puts "B\tMedium"
+        puts "C\tHard"
 
-            ans = gets.chomp.downcase
+        ans = gets.chomp.downcase
 
-            if @@DIFFICULTIES[ans]
-                difficulty = @@DIFFICULTIES[ans]
-                break
-            end
-
-            clear_terminal
+        if @@DIFFICULTIES[ans]
+            difficulty = @@DIFFICULTIES[ans]
+        else
+            raise "You have entered an invalid key. Please try again."
         end
 
         clear_terminal
@@ -315,11 +306,35 @@ class Quiz
 
         puts "Welcome to the game, #{nickname}!".colorize(:light_blue)
 
-        num_questions = get_num_questions
+        while true
+            begin
+                num_questions = get_num_questions
+                break
+            rescue StandardError => e
+                clear_terminal
+                puts e.to_s.colorize(:red)
+            end
+        end
 
-        category = get_category
+        while true
+            begin
+                category = get_category
+                break
+            rescue StandardError => e
+                clear_terminal
+                puts e.to_s.colorize(:red)
+            end
+        end
 
-        difficulty = get_difficulty
+        while true
+            begin
+                difficulty = get_difficulty
+                break
+            rescue StandardError => e
+                clear_terminal
+                puts e.to_s.colorize(:red)
+            end
+        end
 
         questions, all_answers, correct_answers = fetch_questions(num_questions, category, difficulty)
 

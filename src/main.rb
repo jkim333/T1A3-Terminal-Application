@@ -136,9 +136,20 @@ def fetch_questions(num_questions, category, difficulty)
     url = "https://opentdb.com/api.php?amount=#{num_questions}&category=#{category}&difficulty=#{difficulty}"
 
     puts "Please wait a few seconds to prepare the questions...".colorize(:yellow)
-    uri = URI(url)
-    res = Net::HTTP.get_response(uri)
-    body =  JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
+
+    begin
+        uri = URI(url)
+        res = Net::HTTP.get_response(uri)
+        body =  JSON.parse(res.body) if res.is_a?(Net::HTTPSuccess)
+        if body["results"].length == 0
+            raise "We were unable to fetch the questions."
+        end
+    rescue StandardError => e
+        puts "Something happened while fetching the questions.".colorize(:red)
+        puts e.to_s.colorize(:red)
+        puts "Please try again next time.".colorize(:red)
+        exit
+    end
 
     clear_terminal
 

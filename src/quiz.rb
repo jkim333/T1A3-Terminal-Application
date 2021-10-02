@@ -170,7 +170,7 @@ module Quiz
 
             is_answer_correct = false
 
-            puts "Question #{question_no} of #{no_questions}: #{question}".colorize(:light_blue)
+            puts "Question #{question_no} out of #{no_questions}: #{question}".colorize(:light_blue)
 
             (0...all_answers.length).each do |i|
                 puts "#{options[i].upcase}\t#{all_answers[i]}"
@@ -199,11 +199,11 @@ module Quiz
             score_pct = score.to_f / questions.length * 100
 
             if score_pct >= 75
-                puts "Well done #{nickname}! You are a genius!".colorize(:light_blue)
+                puts "Amazing, #{nickname}! You are a genius!".colorize(:light_blue)
             elsif score_pct >= 50
-                puts "Nice try #{nickname}. You did a good job.".colorize(:light_blue)
+                puts "Well done, #{nickname}. You did a good job.".colorize(:light_blue)
             else
-                puts "Good effort #{nickname}! Try again next time.".colorize(:light_blue)
+                puts "Good effort, #{nickname}! Try again.".colorize(:light_blue)
             end
 
             puts "Your've answered #{score} questions correct out of #{questions.length} questions.".colorize(:light_green)

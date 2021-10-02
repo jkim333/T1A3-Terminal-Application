@@ -32,9 +32,9 @@ When the game is launched, the user will be prompted to choose the nickname. Aft
 
 3. **Show progress.** Each time a user answers a question, the application will notify the user on their progress. For example, after answering two questions out of ten questions, the application will print "Question 2 of 10: ...".
 
-4. **Show score.** After the user completes all questions, the application will then present the score, showing how well the user performed at answering the questions. The application will also show a tailored reaction based on the score. If the user scores 75% or above, the application will print "You are a genius!". If the user scores from 50% to 75%, the application will print "Nice try. You did a good job.". If the user scores less than 50%, the application will print "Good effort. Try again.".
+4. **Show score.** After the user completes all questions, the application will then present the score, showing how well the user performed at answering the questions. The application will also show a tailored reaction based on the score. If the user scores 75% or above, the application will print "Amazing! You are a genius!". If the user scores from 50% to 75%, the application will print "Well done. You did a good job.". If the user scores less than 50%, the application will print "Good effort. Try again.".
 
-5. **Show results.** After the application presents the score, the application will present a range of options for the user to choose from. The application will ask the user if they want to review the answers, play again or terminate the game.
+5. **Determine next move.** After the application presents the score, the application will present a range of options for the user to choose from. The application will ask the user if they want to review the answers, play again or terminate the game.
 
 <br>
 
@@ -72,15 +72,41 @@ Utilise a suitable project management platform to track this implementation plan
 
 <br>
 
-## Help documentation (todo)
+## Help documentation
 
-Design help documentation which includes a set of instructions which accurately describe how to use and install the application.
+Please follow the steps below to install and run the application.
 
-You must include:
+1. Install [Ruby](https://www.ruby-lang.org/en/documentation/installation/) on your system.
 
-- steps to install the application
-- any dependencies required by the application to operate
-- any system/hardware requirements
+2. Install [git](https://git-scm.com/downloads) on your system.
+
+3. Clone this reponsitory to your computer and change directory into the project folder.
+
+```bash
+git clone git@github.com:jkim333/T1A3-Terminal-Application.git
+cd T1A3-Terminal-Application
+```
+
+4. Install Ruby gem bundler and gem dependencies.
+
+```bash
+gem install bundler
+bundle install
+```
+
+5. Run the application.
+
+```bash
+ruby main.rb
+```
+
+<br>
+
+The game instruction can be found by running the script below.
+
+```bash
+ruby main.rb -h
+```
 
 <br>
 

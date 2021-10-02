@@ -76,13 +76,13 @@ The Trello images below show the progress of the project in a chronological orde
 | Show score          | Create a method that shows the score the user achieved after completing the quiz. The method should show a tailored reaction based on the score.                 |
 | Determine next move | Create a method that prompts the user if they want to see the correct answers. This method will only be invoked after the user finished answering all questions. |
 
-![Trello image 24/09/2021](./docs/trello_24_09_2021.png)
+![Trello image 24/09/2021](./docs/trello_24_09_2021.PNG)
 
-![Trello image 26/09/2021](./docs/trello_26_09_2021.png)
+![Trello image 26/09/2021](./docs/trello_26_09_2021.PNG)
 
-![Trello image 01/10/2021](./docs/trello_01_10_2021.png)
+![Trello image 01/10/2021](./docs/trello_01_10_2021.PNG)
 
-![Trello image 02/10/2021](./docs/trello_02_10_2021.png)
+![Trello image 02/10/2021](./docs/trello_02_10_2021.PNG)
 
 <br>
 

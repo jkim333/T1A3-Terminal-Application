@@ -58,17 +58,31 @@ The diagram below describes the control flow of this application.
 
 <br>
 
-## Implementation plan (to do)
+## Implementation plan
 
-Develop an implementation plan which:
+The table below summarises the tasks required for each feature. [Trello](https://trello.com/en) was used as a project management platform to track this implementation plan.
 
-- outlines how each feature will be implemented and a checklist of tasks for each feature
-- prioritise the implementation of different features, or checklist items within a feature
-- provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
+The link to the Trello dashboard used for this project is: https://trello.com/b/dGZeGS0L/t1a3
 
-Utilise a suitable project management platform to track this implementation plan
+The Trello images below show the progress of the project in a chronological order.
 
-> Your checklists for each feature should have at least 5 items.
+| Feature             | Task                                                                                                                                                             |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Choose nickname     | Create initial user prompt asking a user to determine their nickname.                                                                                            |
+| Choose questions    | Research how to access web API using ruby.                                                                                                                       |
+|                     | Create a user prompt asking user to determine the number of questions, category, and the level of difficulty.                                                    |
+|                     | Create a method making an API request to https://opentdb.com/api_config.php                                                                                      |
+| Show progress       | Create a method that print the question and choices, and prompt user to submit an answer.                                                                        |
+| Show score          | Create a method that shows the score the user achieved after completing the quiz. The method should show a tailored reaction based on the score.                 |
+| Determine next move | Create a method that prompts the user if they want to see the correct answers. This method will only be invoked after the user finished answering all questions. |
+
+![Trello image 24/09/2021](./docs/trello_24_09_2021.png)
+
+![Trello image 26/09/2021](./docs/trello_26_09_2021.png)
+
+![Trello image 01/10/2021](./docs/trello_01_10_2021.png)
+
+![Trello image 02/10/2021](./docs/trello_02_10_2021.png)
 
 <br>
 
@@ -102,7 +116,7 @@ ruby main.rb
 
 <br>
 
-The game instruction can be found by running the script below.
+The game instruction can be found by running the line below.
 
 ```bash
 ruby main.rb -h

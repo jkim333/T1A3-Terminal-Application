@@ -66,15 +66,34 @@ The link to the Trello dashboard used for this project is: https://trello.com/b/
 
 The Trello images below show the progress of the project in a chronological order.
 
-| Feature             | Task                                                                                                                                                             |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Choose nickname     | Create initial user prompt asking a user to determine their nickname.                                                                                            |
-| Choose questions    | Research how to access web API using ruby.                                                                                                                       |
-|                     | Create a user prompt asking user to determine the number of questions, category, and the level of difficulty.                                                    |
-|                     | Create a method making an API request to https://opentdb.com/api_config.php                                                                                      |
-| Show progress       | Create a method that print the question and choices, and prompt user to submit an answer.                                                                        |
-| Show score          | Create a method that shows the score the user achieved after completing the quiz. The method should show a tailored reaction based on the score.                 |
-| Determine next move | Create a method that prompts the user if they want to see the correct answers. This method will only be invoked after the user finished answering all questions. |
+| Feature             | Task                                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Choose nickname     | Create initial user prompt asking a user to determine their nickname.                                         |
+|                     | If nickname is more than 30 characters, raise an error.                                                       |
+|                     | If nickname is empty (0 character), raise an error.                                                           |
+|                     | Make sure that the error raised is handled properly.                                                          |
+|                     | Infinitely ask the user for their nickname until their nickname satisfies the criteria.                       |
+| Choose questions    | Research how to access web API using ruby.                                                                    |
+|                     | Create a user prompt asking user to determine the number of questions, category, and the level of difficulty. |
+|                     | Create a method making an API request to https://opentdb.com/api_config.php                                   |
+|                     | Inform the user to wait until the questions are fetched from the API.                                         |
+|                     | Loop through the questions one by one and present the question to the user.                                   |
+| Show progress       | Create a method that print the question and choices, and prompt user to submit an answer.                     |
+|                     | Create a counter that tracks how many questions the users have completed.                                     |
+|                     | Create a method that accepts user input for each question.                                                    |
+|                     | If user input is invalid, raise error.                                                                        |
+|                     | Make sure that the error raised is handled properly.                                                          |
+| Show score          | Create a method that shows the score the user achieved after completing the quiz.                             |
+|                     | The method should show a tailored reaction based on the score.                                                |
+|                     | If the user scores 75% or above, the application should pring "Amazing! You are a genius!".                   |
+|                     | If the user scores from 50% to 75%, the application should print "Well done. You did a good job."             |
+|                     | If the user scores less than 50%, the application should print "Good effort. Try again."                      |
+| Determine next move | Create a method that prompts the user if they want to see the correct answers.                                |
+|                     | Make sure that this method will only be invoked after the user finished answering all questions.              |
+|                     | The method should ask if the user wants the play the game again.                                              |
+|                     | The method should ask if the user wants to terminate the game.                                                |
+|                     | If the user input is invalid, raise error.                                                                    |
+|                     | Make sure that the error raised is handled properly.                                                          |
 
 ![Trello image 24/09/2021](./docs/trello_24_09_2021.PNG)
 
